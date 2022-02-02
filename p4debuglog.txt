@@ -1,0 +1,125 @@
+ gcc -g p4original.c; ./a.out
+Enter the size of array:3    
+Enter  3  array elements
+1
+7
+11
+1+7+11=19 
+ gdb a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x8b0: file p4original.c, line 35.
+(gdb) r
+Starting program: /home/runner/pps-IA1-practice-1/a.out 
+warning: Error disabling address space randomization: Operation not permitted
+
+Breakpoint 1, main () at p4original.c:35
+35  {
+(gdb) n
+37    nsize = input_array_size();
+(gdb) s
+input_array_size () at p4original.c:3
+3   {
+(gdb) n
+5     printf ("Enter the size of array:");
+(gdb) n
+6     scanf ("%d",&n);
+(gdb) n
+Enter the size of array:3
+7     return n;
+(gdb) p n
+$1 = 3
+(gdb) n
+8   }
+(gdb) n
+main () at p4original.c:38
+38    int a[nsize];
+(gdb) s
+39    input_array (nsize, a);
+(gdb) s
+input_array (n=3, a=0x7ffe247aeee0) at p4original.c:13
+13    printf ("Enter  %d  array elements\n", n);
+(gdb) n
+Enter  3  array elements
+14    for (i = 0; i < n; i++)
+(gdb) n
+15      scanf ("%d", &a[i]);
+(gdb) n
+1
+14    for (i = 0; i < n; i++)
+(gdb) n
+15      scanf ("%d", &a[i]);
+(gdb) n
+7
+14    for (i = 0; i < n; i++)
+(gdb) n
+15      scanf ("%d", &a[i]);
+(gdb) n
+11
+14    for (i = 0; i < n; i++)
+(gdb) n
+16  }
+(gdb) n
+main () at p4original.c:40
+40    sum = sum_n_arrays (nsize, a);
+(gdb) s
+sum_n_arrays (n=3, a=0x7ffe247aeee0) at p4original.c:20
+20    int i, sum = 0;
+(gdb) n
+21    for (i = 0; i < n; i++)
+(gdb) n
+22      sum = sum + a[i];
+(gdb) n
+21    for (i = 0; i < n; i++)
+(gdb) n
+22      sum = sum + a[i];
+(gdb) n
+21    for (i = 0; i < n; i++)
+(gdb) n
+22      sum = sum + a[i];
+(gdb) n
+21    for (i = 0; i < n; i++)
+(gdb) n
+23    return sum;
+(gdb) n
+24  }
+(gdb) p sum
+$2 = 19
+(gdb) n
+main () at p4original.c:41
+41    out_put (nsize, a, sum);
+(gdb) s
+out_put (n=3, a=0x7ffe247aeee0, sum=19) at p4original.c:29
+29    for (i = 0; i < n-1; i++)
+(gdb) n
+30      printf ("%d+",a[i]);
+(gdb) n
+29    for (i = 0; i < n-1; i++)
+(gdb) n
+30      printf ("%d+",a[i]);
+(gdb) n
+29    for (i = 0; i < n-1; i++)
+(gdb) n
+31    printf ("%d=%d",a[n-1],sum);
+(gdb) n
+32  }
+(gdb) n
+main () at p4original.c:43
+43  }(gdb) c
+Continuing.
+1+7+11=19[Inferior 1 (process 409) exited normally]
+(gdb) 
